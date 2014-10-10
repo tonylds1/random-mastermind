@@ -1,0 +1,72 @@
+<?php
+
+namespace Vox\Treinamento\Tdd\Tests;
+
+
+class FizzBuzzTest extends AbstractFizzBuzzTestCase
+{
+    protected $fizzbuzz;
+
+    public function setUp()
+    {
+        $this->fizzbuzz = new \Vox\Treinamento\Tdd\FizzBuzz();
+    }
+
+    public function tearDown()
+    {
+
+    }
+
+    public function testRetornoCorreto()
+    {
+
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(1), 1);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRetornoIncorretoString()
+    {
+        $this->assertEquals($this->fizzbuzz->verificaBuzz("abc"), 1);
+        $this->assertEquals($this->fizzbuzz->verificaBuzz("1"), 1);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRetornoIncorretoFloat()
+    {
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(1.0), 1);
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(1.1), 1);
+    }
+
+    public function testRetornoSaidaCorretaFizz()
+    {
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(1), 1);
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(2), 2);
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(3), "fizz");
+    }
+
+    public function testRetornoSaidaCorretaBuzz()
+    {
+        $this->fizzbuzz = new \Vox\Treinamento\Tdd\FizzBuzz();
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(4), 4);
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(5), "buzz");
+    }
+
+    public function testRetornoSaidaCorretaFizzBuzz()
+    {
+        $this->fizzbuzz = new \Vox\Treinamento\Tdd\FizzBuzz();
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(15), "fizzbuzz");
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testEntradaZero()
+    {
+        $this->fizzbuzz = new \Vox\Treinamento\Tdd\FizzBuzz();
+        $this->assertEquals($this->fizzbuzz->verificaBuzz(0), "fizzbuzz");
+    }
+}
